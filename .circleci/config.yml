@@ -27,7 +27,7 @@ jobs:
           command: |
             mvn clean install;
             mkdir /tmp/artifacts;
-            cp SocialCreditsPlugin-*.jar /tmp/artifacts;
+            cp *.jar /tmp/artifacts;
             ssh $SSH_USER@$SSH_HOST
             echo "jy suis"
     
