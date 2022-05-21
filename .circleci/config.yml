@@ -28,7 +28,7 @@ jobs:
             mvn clean install;
             mkdir /tmp/artifacts;
             cp /home/circleci/project/target/SocialCreditsPlugin-1.0-SNAPSHOT.jar /tmp/artifacts;
-            ssh $SSH_USER@$SSH_HOST -o StrictHostKeyChecking=no 
+            ssh $SSH_USER@$SSH_HOST  
             echo "jy suis"
     
       - store_artifacts:
