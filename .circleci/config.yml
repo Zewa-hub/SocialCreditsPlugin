@@ -28,12 +28,9 @@ jobs:
             mvn clean install;
             mkdir /tmp/artifacts;
             cp SocialCreditsPlugin-*.jar /tmp/artifacts;
-          
-          name: Deploy Over SSH
-          command: |
             ssh $SSH_USER@$SSH_HOST
             echo "jy suis"
-
+    
       - store_artifacts:
           path: /tmp/artifacts
                   
