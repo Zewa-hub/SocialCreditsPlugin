@@ -29,21 +29,7 @@ jobs:
       - store_artifacts:
           path: /tmp/artifacts
           
-    
-    deploy:
-      machine:
-        enabled: true
-      steps:
-        - add_ssh_keys:
-          fingerprints:
-            - "eb:50:57:f9:15:c5:7d:e1:e7:0a:3b:82:7f:7d:e0:43"
-        - run:
-            name: Deploy Over SSH
-            command: |
-              ssh $SSH_USER@$SSH_HOST
-              echo "je suis dans le serveurs"
-             
-          
+      
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
@@ -58,5 +44,16 @@ workflows:
           filters:
             branches:
               only : main
+          machine:
+            enabled: true
+          steps:
+            - add_ssh_keys:
+              fingerprints:
+                - "eb:50:57:f9:15:c5:7d:e1:e7:0a:3b:82:7f:7d:e0:43"
+            - run:
+                name: Deploy Over SSH
+                command: |
+                  ssh $SSH_USER@$SSH_HOST
+                  echo "je suis dans le serveurs"
 
 
