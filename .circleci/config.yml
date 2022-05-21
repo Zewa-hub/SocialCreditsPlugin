@@ -16,9 +16,6 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "f9:15:e5:12:e4:26:95:15:df:a6:2f:9d:64:ef:19:7d"
       # Checkout the code as the first step.
       - checkout
       # Use mvn clean and package as the standard maven build phase
@@ -28,11 +25,21 @@ jobs:
             mvn clean install;
             mkdir /tmp/artifacts;
             cp /home/circleci/project/target/SocialCreditsPlugin-1.0-SNAPSHOT.jar /tmp/artifacts;
-            ssh $SSH_USER@$SSH_HOST -o StrictHostKeyChecking=no "echo 'y suis'"
-            
-    
+        
       - store_artifacts:
           path: /tmp/artifacts
+
+  deploy:
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "f9:15:e5:12:e4:26:95:15:df:a6:2f:9d:64:ef:19:7d"
+      - run :
+          name : deploy
+          command: | 
+            ssh $SSH_USER@$SSH_HOST -o StrictHostKeyChecking=no "
+            cd /Minecraft/spigot_1.18.1/plugins
+            curl -H 'Circle-Token: $CIRCLE_TOKEN' https://circleci.com/api/v1.1/project/github/Zewa-hub/SocialCreditsPlugin/latest/artifacts " 
                   
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -42,5 +49,6 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
+      - deploy
 
 
