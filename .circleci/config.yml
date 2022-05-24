@@ -41,7 +41,7 @@ jobs:
           command: | 
             ssh $SSH_USER@$SSH_HOST -o StrictHostKeyChecking=no "
             cd /Minecraft/spigot_1.18.1/plugins
-            curl -H 'Circle-Token: $CIRCLE_TOKEN' https://circleci.com/api/v1.1/project/github/Zewa-hub/SocialCreditsPlugin/latest/artifacts " 
+            wget -H 'Circle-Token: $CIRCLE_TOKEN' https://circleci.com/api/v1.1/project/github/Zewa-hub/SocialCreditsPlugin/latest/artifacts -O SocialCreditPlugin.jar" 
                   
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
