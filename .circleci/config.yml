@@ -41,7 +41,7 @@ jobs:
           command: | 
             ssh $SSH_USER@$SSH_HOST -o StrictHostKeyChecking=no "
             cd /source_code
-            rm -rf .
+            rm -rf *
             git clone git@github.com:Zewa-hub/SocialCreditsPlugin.git
             cd SocialCreditsPlugin
             mvn clean install
