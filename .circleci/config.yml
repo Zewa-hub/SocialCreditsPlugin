@@ -40,9 +40,12 @@ jobs:
           name : deploy
           command: | 
             ssh $SSH_USER@$SSH_HOST -o StrictHostKeyChecking=no "
-            cd /Minecraft/spigot_1.18.1/plugins
-            wget -H 'Circle-Token: $CIRCLE_TOKEN' https://circleci.com/api/v1.1/project/github/Zewa-hub/SocialCreditsPlugin/latest/artifacts -O SocialCreditPlugin.zip || /bin/true
-            unzip SocialCreditPlugin.zip SocialCreditsPlugin.jar"
+            cd /source_code
+            rm -rf .
+            git clone git@github.com:Zewa-hub/SocialCreditsPlugin.git
+            cd SocialCreditsPlugin
+            mvn clean install
+            cp target/SocialCreditsPlugin-1.0-SNAPSHOT.jar /Minecraft/spigot_1.18.1/plugin"
                   
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
