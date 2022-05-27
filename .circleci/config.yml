@@ -45,6 +45,7 @@ jobs:
             git clone https://Zewa-hub:GITHUB_TOKEN@github.com/Zewa-hub/SocialCreditsPlugin.git
             cd SocialCreditsPlugin
             source /etc/profile.d/maven.sh
+            mvn -version
             mvn clean install
             cp target/SocialCreditsPlugin-1.0-SNAPSHOT.jar /Minecraft/spigot_1.18.1/plugin"
                   
