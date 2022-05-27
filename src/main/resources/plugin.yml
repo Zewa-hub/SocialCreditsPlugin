@@ -3,7 +3,7 @@ version: '${project.version}'
 main: me.necroliner.socialcreditsplugin.SocialCreditSystem
 api-version: 1.18
 authors: [ Necroliner ]
+description: displays social credits count
 commands:
   scs:
-    description: displays social credits count
     usage: /<command>
